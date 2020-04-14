@@ -4,12 +4,6 @@ from flask import Flask
 import os
 from twilio.rest import Client
 
-
-# Your Account Sid and Auth Token from twilio.com/console
-# DANGER! This is insecure. See http://twil.io/secure
-account_sid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-auth_token = 'your_auth_token'
-
 app = Flask(__name__)
 
 AUTH_TOKEN = os.getenv('AUTH_TOKEN')
@@ -22,7 +16,8 @@ def lambda_handler(event, context):
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return '<?xml version=\"1.0\" encoding=\"UTF-8\"?>'\
+           '<Response><Message>Hello world Lambada Lambda</Message></Response>'
 
 @app.route("/sms/<phone>/<msg>")
 def send_sms(phone, msg):
