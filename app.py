@@ -12,8 +12,8 @@ auth_token = 'your_auth_token'
 
 app = Flask(__name__)
 
-AUTH_TOKEN = os.environ("AUTH_TOKEN")
-ACCOUNT_SID = os.environ("ACCOUNT_SID")
+AUTH_TOKEN = os.getenv('AUTH_TOKEN')
+ACCOUNT_SID = os.getenv('ACCOUNT_SID')
 
 @app.route("/")
 def hello():
