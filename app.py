@@ -15,13 +15,12 @@ app = Flask(__name__)
 AUTH_TOKEN = os.getenv('AUTH_TOKEN')
 ACCOUNT_SID = os.getenv('ACCOUNT_SID')
 
-@app.route("/")
 def lambda_handler(event, context):
     print("Received event: " + str(event))
     return '<?xml version=\"1.0\" encoding=\"UTF-8\"?>'\
            '<Response><Message>Hello world Lambada Lambda</Message></Response>'
 
-@app.route("/hello")
+@app.route("/")
 def hello():
     return "Hello World!"
 
@@ -30,10 +29,11 @@ def send_sms(phone, msg):
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
     message = client.messages \
             .create(
-                body="Join Earth's mightiest heroes. Like Kevin Bacon.",
+                body= msg,
+                # "Join Earth's mightiest heroes. Like Kevin Bacon.",
                 # messaging_service_sid='MGXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
                 from_='+12082739639',
-                to='+12027511880'
+                to=phone
             )
 
     print(message.sid)

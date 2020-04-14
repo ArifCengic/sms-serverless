@@ -29,6 +29,9 @@ functions:
       variable2: value2
       AUTH_TOKEN: ${env:AUTH_TOKEN}
       ACCOUNT_SID: ${env:ACCOUNT_SID}
+      
+  hello:
+    handler: app.lambda_handler
 
 # Welcome to Serverless!
 #
