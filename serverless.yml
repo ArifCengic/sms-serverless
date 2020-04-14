@@ -16,8 +16,8 @@ custom:
 provider:
   name: aws
   runtime: python3.6
-  stage: dev
-  region: us-east-1
+  stage: ${opt:stage, 'dev'} # Set the default stage used. Default is dev
+  region: ${opt:region, 'us-east-1'} # Overwrite the default region used. Default is us-east-1
 
 functions:
   app:
@@ -25,8 +25,10 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
-
-
+    environment:
+      variable2: value2
+      SENTRY_DSN: ${env:SENTRY_DSN}
+      SENTRY_ENVIRONMENT: ${env:SENTRY_ENVIRONMENT}
 
 # Welcome to Serverless!
 #
