@@ -16,11 +16,17 @@ AUTH_TOKEN = os.getenv('AUTH_TOKEN')
 ACCOUNT_SID = os.getenv('ACCOUNT_SID')
 
 @app.route("/")
+def lambda_handler(event, context):
+    print("Received event: " + str(event))
+    return '<?xml version=\"1.0\" encoding=\"UTF-8\"?>'\
+           '<Response><Message>Hello world Lambada Lambda</Message></Response>'
+
+@app.route("/hello")
 def hello():
     return "Hello World!"
 
-@app.route("/sms/<phone>/<message>")
-def send_sms(phone, message):
+@app.route("/sms/<phone>/<msg>")
+def send_sms(phone, msg):
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
     message = client.messages \
             .create(
@@ -31,4 +37,4 @@ def send_sms(phone, message):
             )
 
     print(message.sid)
-    return f"Message ${phone} Hello ${message}!"
+    return f"Message {phone} Hello {msg}!"
