@@ -1,6 +1,6 @@
 # serverless.yml
 
-service: serverless-flask
+service: sms-serverless-flask
 
 plugins:
   - serverless-python-requirements
@@ -27,8 +27,8 @@ functions:
       - http: 'ANY {proxy+}'
     environment:
       variable2: value2
-      SENTRY_DSN: ${env:SENTRY_DSN}
-      SENTRY_ENVIRONMENT: ${env:SENTRY_ENVIRONMENT}
+      AUTH_TOKEN: ${env:AUTH_TOKEN}
+      ACCOUNT_SID: ${env:ACCOUNT_SID}
 
 # Welcome to Serverless!
 #
